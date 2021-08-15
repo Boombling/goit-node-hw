@@ -3,7 +3,7 @@ const contactsOperations= require("./contacts");
 
 (async () => {
     try {
-        const contacts = await contactsOperations.listAll();
+        const contacts = await contactsOperations();
         console.log(contacts);
     }
     catch (error) {
