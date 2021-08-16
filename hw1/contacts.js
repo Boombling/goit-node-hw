@@ -1,4 +1,3 @@
-const fs = require("fs/promises")
 const path = require("path");
 const { v4 } = require('uuid');
 
@@ -9,7 +8,7 @@ const updateContacts = require('./module/updateContacts');
 const listContacts = async() => {
     try {
         const contacts = await contactList(contactsPath);
-        // console.log(contacts);
+        console.log(contacts);
         return contacts;
     }
     catch(error) {
@@ -24,29 +23,30 @@ const getContactById = async (contactId) => {
         if (!selectContact) {
             throw new Error(`Contact with id = ${contactId} not found`);
         }
+        console.log(selectContact);
         return selectContact;
-
     }
-    catch (error) {
-        throw error
+    catch(error) {
+        throw error;
     }
 }
 const removeContact = async (contactId) => {
     try {
         const contacts = await contactList(contactsPath);
-        const idx = contacts.findIndex((item) => item.id === contactId);
+        const idx = contacts.findIndex((item) => item.id == contactId);
         if (idx === -1) {
             throw new Error(`Contact with id = ${contactId} not found`);
         }
         const newContacts = contacts.filter((item) => item.id !== contactId)
         await updateContacts(newContacts, contactsPath);
+        console.log(newContacts);
         return contacts[idx];
     }
-    catch (error) {
-        throw error
+    catch(error) {
+        throw error;
     }
 }
-const addContact = async ({name, email, phone}) => {
+const addContact = async (name, email, phone) => {
     try {
         const contacts = await contactList(contactsPath);
         const newContact = {
@@ -57,6 +57,7 @@ const addContact = async ({name, email, phone}) => {
         }
         const newContacts = {...contacts, newContact};
         await updateContacts(newContacts, contactsPath);
+        console.log(newContacts);
         return newContacts;
     }
     catch (error) {

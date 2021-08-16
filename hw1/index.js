@@ -30,7 +30,7 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
       case 'add':
-          if (agrv.name, agrv.email, agrv.phone) {
+          if ((argv.name, argv.email, argv.phone)) {
               addContact(name, email, phone)
           }
           else {
@@ -39,7 +39,7 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
       case 'remove':
-          if (agrv.id) {
+          if (argv.id) {
               removeContact(id)
           }
           else {
@@ -53,3 +53,10 @@ function invokeAction({ action, id, name, email, phone }) {
 }
 
 invokeAction(argv);
+
+//  "9": {
+//     "id": 10,
+//     "name": "Alec Howard",
+//     "email": "Donec.elementum@scelerisquescelerisquedui.net",
+//     "phone": "(748) 206-2688"
+//   }
