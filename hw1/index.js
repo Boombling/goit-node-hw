@@ -17,34 +17,19 @@ const argv = program.opts();
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case 'list':
-      listContacts()
+        listContacts()
       break;
 
       case 'get':
-          if (argv.id) {
-              getContactById(id)
-          }
-          else {
-              console.log(`Contact with id = ${id} not found`);
-          }
+        getContactById(id)
       break;
 
       case 'add':
-          if ((argv.name, argv.email, argv.phone)) {
-              addContact(name, email, phone)
-          }
-          else {
-              console.log('Contact is not correct');
-          }
+        addContact(name, email, phone)
       break;
 
       case 'remove':
-          if (argv.id) {
-              removeContact(id)
-          }
-          else {
-              console.log(`Contact with id = ${id} not found`);
-          }
+        removeContact(id)
       break;
 
     default:
