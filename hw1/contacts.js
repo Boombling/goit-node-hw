@@ -8,7 +8,7 @@ const updateContacts = require('./module/updateContacts');
 const listContacts = async() => {
     try {
         const contacts = await contactList(contactsPath);
-        console.log(contacts);
+        console.table(contacts);
         return contacts;
     }
     catch(error) {
@@ -40,7 +40,7 @@ const removeContact = async (contactId) => {
         }
         const newContacts = contacts.filter((item) => String(item.id) !== String(contactId))
         await updateContacts(newContacts, contactsPath);
-        console.log(newContacts);
+        console.table(newContacts);
         return contacts[idx];
     }
     catch(error) {
@@ -57,9 +57,9 @@ const addContact = async (name, email, phone) => {
             email: email,
             phone: phone
         }
-        const newContacts = { ...contacts, newContact };
+        const newContacts = [ ...contacts, newContact ];
         await updateContacts(newContacts, contactsPath);
-        console.log(newContacts);
+        console.log(newContact);
         return newContacts;
     }
     catch (error) {
