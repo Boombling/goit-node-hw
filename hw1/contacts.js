@@ -19,7 +19,7 @@ const listContacts = async() => {
 const getContactById = async(contactId) => {
     try {
         const contacts = await contactList(contactsPath);
-        const selectContact = contacts.find((item) => item.id === contactId);
+        const selectContact = contacts.find((item) => String(item.id) === String(contactId));
         if (!selectContact) {
             throw new Error(`Contact with id = ${contactId} not found`);
         }
@@ -34,11 +34,11 @@ const getContactById = async(contactId) => {
 const removeContact = async (contactId) => {
     try {
         const contacts = await contactList(contactsPath);
-        const idx = contacts.findIndex((item) => item.id == contactId);
+        const idx = contacts.findIndex((item) => String(item.id) == String(contactId));
         if (idx === -1) {
             throw new Error(`Contact with id = ${contactId} not found`);
         }
-        const newContacts = contacts.filter((item) => item.id !== contactId)
+        const newContacts = contacts.filter((item) => String(item.id) !== String(contactId))
         await updateContacts(newContacts, contactsPath);
         console.log(newContacts);
         return contacts[idx];
@@ -57,7 +57,7 @@ const addContact = async (name, email, phone) => {
             email: email,
             phone: phone
         }
-        const newContacts = {...contacts, newContact};
+        const newContacts = { ...contacts, newContact };
         await updateContacts(newContacts, contactsPath);
         console.log(newContacts);
         return newContacts;

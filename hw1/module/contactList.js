@@ -5,4 +5,4 @@ async function contactList(contact) {
     const contacts = JSON.parse(data);
     return contacts
 }
-module.exports = contactList
+module.exports = contactList;
